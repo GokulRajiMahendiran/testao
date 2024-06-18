@@ -1,9 +1,21 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') { 
+        stage('Install Dependencies') {
             steps {
-                sh 'npm install' 
+                script {
+                    // Ensure Node.js and npm are installed on your Jenkins agent
+                    sh 'npm install'
+                }
+            }
+        }
+        
+        stage('Build Project') {
+            steps {
+                script {
+                    sh 'npm run build'
+                }
             }
         }
     }
